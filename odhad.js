@@ -1,4 +1,5 @@
 let startTime;
+let msm;
 
 function start() {
   document.getElementById('b').disabled = true;
@@ -15,12 +16,9 @@ function run() {
 
 function stop() {
   document.body.setAttribute('data-state', 'base');
-  let res = document.getElementById('r');
-  let now = new Date().toLocaleString();
-  let diff = Date.now() - startTime - 1000;
-  diff = (diff > 0 ? '+' : '') + diff.toString();
-  let cls = diff > 10 ? 'plus' : diff < -10 ? 'minus' : 'spoton';
-  res.innerHTML += `${now}\t5s\t<span class="${cls}">${diff} ms</span>\n`;
+  let time = Date.now();
+  let diff = time - startTime - 1000;
+  addLine(time, diff);
 }
 
 function click() {
@@ -30,6 +28,25 @@ function click() {
     start();
 }
 
+function addLine(time, diff, update = true) {
+  let res = document.getElementById('r');
+  let diffText = (diff > 0 ? '+' : '') + diff.toString();
+  let cls = diff > 10 ? 'plus' : diff < -10 ? 'minus' : 'spoton';
+  let now = new Date(time).toLocaleString();
+  res.innerHTML = `${now}\t5s\t<span class="${cls}">${diffText} ms</span>\n` + res.innerHTML;
+  if(update) {
+    msm.push({time, diff});
+    localStorage['odhad'] = JSON.stringify(msm);
+  }
+}
+
+function loadLS() {
+  msm = JSON.parse(localStorage['odhad'] || '[]');
+  for(m of msm)
+    addLine(m.time, m.diff, false);
+}
+
 window.addEventListener('DOMContentLoaded', function() {
+  loadLS();
   document.getElementById('b').addEventListener('click', click);
 });
