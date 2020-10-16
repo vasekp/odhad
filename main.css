@@ -18,43 +18,55 @@ body {
   justify-content: space-between;
 }
 
+body[data-state='base'] {
+  --color-base: blue;
+  --color-dark: #004;
+  --color-bkg: linear-gradient(0.125turn, #AAE, #CCF);
+  --button-text: 'Start';
+}
+
+body[data-state='waiting'] {
+  --color-base: #EEE;
+  --color-dark: #444;
+  --color-bkg: linear-gradient(0.125turn, #CCC, #EEE);
+  --button-text: '...';
+}
+
+body[data-state='running'] {
+  --color-base: red;
+  --color-dark: #400;
+  --color-bkg: linear-gradient(0.125turn, #EAA, #FCC);
+  --button-text: 'Stop!';
+}
+
 p {
   margin: 1rem 0;
 }
 
-button {
+#b {
   display: block;
   margin: 1rem auto;
-  border: 2px solid #008;
+  border: 2px solid var(--color-dark);
   border-radius: 1rem;
-  background: linear-gradient(0.125turn, #AAE, #CCF);
+  background: var(--color-bkg);
   height: 5rem;
   width: 10rem;
   font-size: 200%;
   font-variant-caps: small-caps;
-  color: #004;
+  color: var(--color-dark);
   outline: 0;
 }
 
+#b::after {
+  content: var(--button-text);
+}
+
 button:focus {
-  box-shadow: 0 0 10px blue;
+  box-shadow: 0 0 10px var(--color-base);
 }
 
 button[disabled] {
-  background: linear-gradient(0.125turn, #CCC, #EEE);
-  border-color: #888;
-  color: #444;
   box-shadow: none;
-}
-
-button.stop {
-  background: linear-gradient(0.125turn, #EAA, #FCC);
-  border-color: #800;
-  color: #400;
-}
-
-button.stop:focus {
-  box-shadow: 0 0 10px red;
 }
 
 .results {
@@ -63,4 +75,22 @@ button.stop:focus {
   overflow-y: auto;
   flex: .5;
   margin: 1rem 0;
+  font-family: monospace;
+  white-space: pre;
+}
+
+.plus {
+  color: blue;
+}
+
+.minus {
+  color: red;
+}
+
+.spoton {
+  color: green;
+}
+
+body[data-state="waiting"] {
+  background: #EEE;
 }
