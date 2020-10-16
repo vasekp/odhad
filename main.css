@@ -102,6 +102,10 @@ button[disabled] {
   margin-top: 1rem;
 }
 
+#iSound {
+  vertical-align: top;
+}
+
 @media only screen and (max-width: 400px) {
   .settings {
     grid: auto-flow / 1fr 70px;

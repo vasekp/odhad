@@ -12,6 +12,8 @@ function run() {
   document.getElementById('b').disabled = false;
   document.body.setAttribute('data-state', 'running');
   startTime = Date.now();
+  if(conf.sound)
+    document.querySelector('audio').play();
 }
 
 function stop() {
@@ -19,6 +21,7 @@ function stop() {
   let time = Date.now();
   let diff = time - startTime - conf.goal * 1000;
   addLine(time, conf.goal, diff);
+  document.querySelector('audio').load();
 }
 
 function click() {
@@ -48,6 +51,7 @@ function loadLS() {
   conf = JSON.parse(localStorage['odhad-conf'] || '{}');
   document.getElementById('iGoal').value = conf.goal || 5;
   document.getElementById('iWait').value = conf.wait || 1;
+  document.getElementById('iSound').checked = conf.sound || false;
   inputGoal(document.getElementById('iGoal'));
   inputWait(document.getElementById('iWait'));
 }
@@ -70,9 +74,18 @@ function inputWait(elm) {
   }
 }
 
+function inputSound(elm) {
+  let val = elm.checked;
+  if(conf.sound != val) {
+    conf.sound = val;
+    localStorage['odhad-conf'] = JSON.stringify(conf);
+  }
+}
+
 window.addEventListener('DOMContentLoaded', function() {
   document.getElementById('b').addEventListener('click', click);
   document.getElementById('iGoal').addEventListener('input', e => inputGoal(e.currentTarget));
   document.getElementById('iWait').addEventListener('input', e => inputWait(e.currentTarget));
+  document.getElementById('iSound').addEventListener('input', e => inputSound(e.currentTarget));
   loadLS();
 });
