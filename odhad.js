@@ -82,6 +82,10 @@ function inputSound(elm) {
   }
 }
 
+window.addEventListener('load', function() {
+  navigator.serviceWorker.register('/odhad/worker.js');
+});
+
 window.addEventListener('DOMContentLoaded', function() {
   document.getElementById('b').addEventListener('click', click);
   document.getElementById('iGoal').addEventListener('input', e => inputGoal(e.currentTarget));
