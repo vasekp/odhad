@@ -97,7 +97,17 @@ button[disabled] {
 
 .settings {
   display: grid;
-  grid: auto-flow / auto 1fr 70px;
+  grid: auto-flow / 160px 1fr 70px;
   column-gap: .5rem;
   margin-top: 1rem;
+}
+
+@media only screen and (max-width: 400px) {
+  .settings {
+    grid: auto-flow / 1fr 70px;
+  }
+
+  .settings input[type='range'] {
+    grid-column: 1/2;
+  }
 }
