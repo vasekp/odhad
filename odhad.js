@@ -87,6 +87,8 @@ window.addEventListener('load', function() {
 });
 
 window.addEventListener('DOMContentLoaded', function() {
+  let audio = document.querySelector('audio');
+  fetch(audio.src).then(() => audio.load());
   document.getElementById('b').addEventListener('click', click);
   document.getElementById('iGoal').addEventListener('input', e => inputGoal(e.currentTarget));
   document.getElementById('iWait').addEventListener('input', e => inputWait(e.currentTarget));
