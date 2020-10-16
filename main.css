@@ -1,0 +1,66 @@
+:root {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  font-family: sans-serif;
+}
+
+body {
+  max-width: 30em;
+  height: 100%;
+  background: white;
+  margin: 0 auto;
+  padding: 0 1rem;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+button {
+  display: block;
+  margin: 1rem auto;
+  border: 2px solid #008;
+  border-radius: 1rem;
+  background: linear-gradient(0.125turn, #AAE, #CCF);
+  height: 5rem;
+  width: 10rem;
+  font-size: 200%;
+  font-variant-caps: small-caps;
+  color: #004;
+  outline: 0;
+}
+
+button:focus {
+  box-shadow: 0 0 10px blue;
+}
+
+button[disabled] {
+  background: linear-gradient(0.125turn, #CCC, #EEE);
+  border-color: #888;
+  color: #444;
+  box-shadow: none;
+}
+
+button.stop {
+  background: linear-gradient(0.125turn, #EAA, #FCC);
+  border-color: #800;
+  color: #400;
+}
+
+button.stop:focus {
+  box-shadow: 0 0 10px red;
+}
+
+.results {
+  border: 1px solid #888;
+  padding: .5rem;
+  overflow-y: auto;
+  flex: .5;
+  margin: 1rem 0;
+}
