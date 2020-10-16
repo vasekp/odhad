@@ -35,7 +35,7 @@ function addLine(time, goal, diff, update = true) {
   let res = document.getElementById('r');
   let diffText = (diff > 0 ? '+' : '') + diff.toString();
   let cls = diff > 10 ? 'plus' : diff < -10 ? 'minus' : 'spoton';
-  let now = new Date(time).toLocaleString();
+  let now = new Date(time).toLocaleString('cs-CZ');
   res.innerHTML = `${now}\t${goal}s\t<span class="${cls}">${diffText} ms</span>\n` + res.innerHTML;
   if(update) {
     msm.push({time, goal, diff});
