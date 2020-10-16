@@ -10,7 +10,14 @@
     </title>
   </head>
   <body data-state="base">
-    <p>Ahoj</p>
+    <div class="settings">
+      <label for="iGoal">Odhadovaná doba:</label>
+      <input id="iGoal" type="range" min="1" max="30"/>
+      <label for="iGoal"></label>
+      <label for="iWait">Doba čekání:</label>
+      <input id="iWait" type="range" min="0" max="3"/>
+      <label for="iWait"></label>
+    </div>
     <button id="b" class="start"></button>
     <div id="r" class="results"></div>
   </body>
